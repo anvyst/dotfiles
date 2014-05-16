@@ -1,0 +1,115 @@
+set encoding=utf-8
+set nocp
+execute pathogen#infect()
+
+if version >= 600
+	filetype plugin indent on
+endif
+
+let Tlist_Sort_Type = 'name'
+
+" Carantine {{{
+"“Insert <Tab> or complete identifier
+"“if the cursor is after a keyword character
+function MyTabOrComplete()
+	let col = col('.')-1
+	if !col || getline('.')[col-1] !~ '\k'
+		return "\<tab>"
+	else
+		return "\<C-N>"
+	endif
+endfunction
+"inoremap <Tab> <C-R>=MyTabOrComplete()<CR>
+noremap <silent> <F11> :cal VimCommanderToggle()<CR> 
+" Set default SQL dialect to MySQL
+let g:sql_type_default = 'mysql'
+
+" CakePHP stuff
+autocmd BufNewFile,BufRead *.thtml,*.ctp set ft=php
+" }}}
+" Tabulation {{{
+set wildchar=<tab>	" Complete filenames with Tab
+set tabstop=4		" tabs are 4 characters long
+set shiftwidth=4	" indent level
+set autoindent	" automatic indenting of new lines
+set smartindent	" get smart indenting for program code-like texts
+" }}}
+" Searching {{{
+set nohlsearch	" do not highlight search patterns
+set incsearch	" incremental search (search while pattern is typed)
+set ignorecase	" ignore case
+set smartcase	" case-insensitive searching until pattern is in lower case
+" }}}
+" Misc {{{
+set numberwidth=4 " Number of columns in line numbering
+set laststatus=2	" always display the status line
+set title titlestring=vim\ -\ %F\ %h " format of the window title
+set foldmethod=marker	" use default marker for folding
+set visualbell			" Don't beep me, you beep!
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%04l,%04v]\ [LEN=%L][%p%%]
+" set cursorline
+" }}}
+" Colors {{{
+syntax on			" switch on syntax highlighting
+set bg=dark			" use colors for the dark background
+set t_Co=256
+ colorscheme jellybeans
+
+if has("gui_running")
+	colorscheme sea
+else
+	colorscheme jellybeans
+endif
+" }}}
+" Options {{{
+set autowrite	" saves unwritten buffers
+set nobackup	" do not create backup files
+set bs=2		" backspace over everything in insert mode
+set ruler		" show cursor position in the file
+set history=50	" keep last 50 commands
+set wrapmargin=1	" margin from the right to show wrapping
+set formatoptions=awtcrq
+set number						" Line numbers
+set complete-=k				" Do not complete from dictionaries
+set formatoptions=croq
+set nowrap						" No line wrapping
+set showmatch					" Show matching opening bracket
+set matchtime=5				" Show match for half a second
+" }}}
+" Vertical indenting {{{
+" set list
+" set listchars=tab:\|\ 
+" }}}
+" Perl syntax check {{{
+autocmd BufNewFile,BufRead *.pl,*.pm,*.cgi,*.t compiler perl
+autocmd BufNewFile,BufRead *.pl,*.pm,*.cgi,*.t set ft=perl
+augroup filetypedetect
+autocmd! BufNewFile,BufRead *.epl setf embperl
+augroup END
+" }}}
+" Start directory explorer if no files specified {{{
+au! CursorHold * let @/ = '\%' . line('.') . 'l.*'
+"if argc() == 0
+"	silent exe 'e .'
+"endif
+" }}}
+" TechWordsToAvoid {{{
+" Highlight words to avoid in tech writing
+" =======================================
+"
+"   obviously, basically, simply, of course, clearly,
+"   just, everyone knows, However, So, easy
+
+"   http://css-tricks.com/words-avoid-educational-writing/
+
+highlight TechWordsToAvoid ctermbg=red ctermfg=white
+match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however\|so,\|easy/
+autocmd BufWinEnter * match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however,\|so,\|easy/
+autocmd InsertEnter * match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however,\|so,\|easy/
+autocmd InsertLeave * match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however,\|so,\|easy/
+autocmd BufWinLeave * call clearmatches()
+" }}}
+" Ruby syntax check {{{
+" setting tabs for specific file types
+autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+" }}}

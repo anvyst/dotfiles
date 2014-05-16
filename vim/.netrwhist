@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/Users/andreyvystavkin/vhosts/www.whmcs/public_html/modules/registrars/internetbs'
+let g:netrw_dirhist_2='/Users/andreyvystavkin/vhosts/www.tb.anvyst/htdocs/app/Model'
+let g:netrw_dirhist_3='/Users/andreyvystavkin/vhosts/www.grounds/htdocs/app/Config/Schema'
+let g:netrw_dirhist_4='/Users/andreyvystavkin/vhosts/www.grounds/htdocs/.git'
+let g:netrw_dirhist_5='/Users/andreyvystavkin/vhosts/www.whmcs/public_html/fozzy_scripts'
+let g:netrw_dirhist_6='/Users/andreyvystavkin/vhosts/www.api/htdocs/app/webroot'
+let g:netrw_dirhist_7='/Users/andreyvystavkin/vhosts/www.api/htdocs/api.fozzy.com.wiki'
+let g:netrw_dirhist_8='/Users/andreyvystavkin/vhosts/code/php/ServersRegistrar'
+let g:netrw_dirhist_9='/Users/andreyvystavkin/vhosts/www.whmcs/public_html/modules/servers/vpsm_hotfx'
