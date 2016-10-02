@@ -6,6 +6,6 @@ let Tlist_Process_File_Always = 1
 let Tlist_Enable_Fold_Column = 0
 let tlist_php_settings = 'php;c:class;d:constant;f:function'
 if exists('loaded_taglist')
-	map <silent> <F9> :TlistToggle<CR>
+"	map <silent> <F9> :TlistToggle<CR>
 endif
 
