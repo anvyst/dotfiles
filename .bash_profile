@@ -2,21 +2,15 @@
 
 # Get the aliases and functions
 if [ -f ~/.bashrc ]; then
-	. ~/.bashrc
+    . ~/.bashrc
 fi
 
 # User specific environment and startup programs
 
 PATH=$PATH:$HOME/.local/bin:$HOME/.vim/bin:$HOME/bin
 
-#
-# mkdir ~/.bash
-# cd ~/.bash
-# git clone git://github.com/jimeh/git-aware-prompt.git
-#
-export GITAWAREPROMPT=~/.bash/git-aware-prompt
-source "${GITAWAREPROMPT}/main.sh"
-source "${GITAWAREPROMPT}/colors.sh"
+source ~/perl5/perlbrew/etc/bashrc
 
-export PS1="[\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\] \[$txtgrn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]]\$ "
+source ~/.bash/git-prompt.sh
+export PS1='\[\e[92m\]\u@\h\[\e[0m\]: [\[\e[93m\]\w\[\e[94m\]$(__git_ps1 ":%s")\[\e[0m\]]\\$ \[\e[0;37m\]'
 export PATH
